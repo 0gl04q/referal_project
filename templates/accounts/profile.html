@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <p>Ваш номер - {{ user.phone }}</p>
+
+    {% if main_user %}
+
+        <p>Пригласил - {{ main_user }}, {{ main_user.invitation_code }}</p>
+
+    {% else %}
+
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Применить">
+        </form>
+
+    {% endif %}
+
+
+    <p>Ваш код для приглашения - {{ user.invitation_code }}</p>
+
+
+{% endblock %}
